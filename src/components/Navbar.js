@@ -8,7 +8,7 @@ export default function Navbar() {
             </Link>
             <div className="flex gap-6 text-sm font-medium">
                 <Link href="/" className="hover:text-sky-400  transition" > Inicio </Link>
-                <Link href="#" className="hover:text-sky-400  transition" > Catalogo </Link>
+                <Link href="/catalogo" className="hover:text-sky-400  transition" > Catalogo </Link>
                 <Link href="#" className="hover:text-sky-400  transition" > Carrito </Link>
             </div>
         </nav>
