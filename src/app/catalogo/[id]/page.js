@@ -1,9 +1,14 @@
 import Link from "next/link";
-import { mockProducts } from "@/lib/products";
+
+async function getProduct(id) {
+    const res = await fetch(`https://fakestoreapi.com/products/${id}`);
+    if(!res.ok) return null;
+    return res.json();
+}
 
 export default async function ProductDetailPage({ params }) {
     const { id } = await params;
-    const  product = mockProducts.find( (item) => item.id === Number(id));
+    const product = await getProduct(id);
 
     if(!product){
         return (
@@ -24,6 +29,11 @@ export default async function ProductDetailPage({ params }) {
             </Link>
 
             <div className="bg-slate-800 border border-slate-700 rounded-2xl p-8">
+                <div className="bg-white p-6 rounded-xl mb-4 flex items-center justify-center h-72">
+                    <img src={product.image} alt={product.title} className="max-h-full object-contain"/>
+                </div>
+                
+                <div>
                 <span className="text-xs font-semibold text-sky-400 uppercase tracking-wider block mb-2">
                     {product.category}
                 </span>
@@ -35,6 +45,7 @@ export default async function ProductDetailPage({ params }) {
                     <button className="bg-sky-500 hover:bg-sky-400 text-slate-900 font-bold px-6 py-3 rounded-xl transition">
                     Añadir al Carrito
                     </button>
+                </div>
                 </div>
             </div>
         </main>

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from 'next/link';
 
-export default function ProductCard({ id, title, price, category }) {
+export default function ProductCard({ id, title, price, category, image }) {
     const [added, setAdded] = useState(false);
 
     const handleAddToCart = (e) => {
@@ -16,11 +16,17 @@ export default function ProductCard({ id, title, price, category }) {
         <div className="bg-slate-800 border border-slate-700 rounded-xl p-5 flex flex-col justify-between hover:border-sky-500 transition">
             <Link href={`/catalogo/${id}`}>
                 <div>
+                    {image && (
+                        <div className="bg-white p-4 rounded-lg mb-4 h-48 flex items-center justify-center">
+                            <img src={image} alt={title} className="max-h-full object-contain group-hover:scale-105 transition" />
+                        </div>
+                    )}
                     <span className="text-xs font-semibold text-sky-400 uppercase tracking-wider">{category}</span>
                     <h3 className="text-lg font-bold text-white mt-1 mb-2">{title}</h3>
                     <p className="text-2xl font-bold text-slate-100 mb-4">${price}</p>
                 </div>
             </Link>
+            
             <button
                 onClick={handleAddToCart}
                 className={`w-full py-2.5 rounded-lg font-bold ${
