@@ -8,13 +8,13 @@ A modern e-commerce application built with Next.js (App Router) and Tailwind CSS
 * **Language:** JavaScript
 
 ## Project Roadmap
-[x] Project setup (App Router + Tailwind CSS)
-[x] Global layout with Navbar and Footer
-[x] Route structure (Home and Catalog pages)
-[ ] Dynamic routes for product details (/product/[id])
-[ ] Shopping cart state management
-[ ] User authentication (Auth.js / NextAuth)
-[ ] Production deployment on Vercel
+* [x] Project setup (App Router + Tailwind CSS)
+* [x] Global layout with Navbar and Footer
+* [x] Route structure (Home and Catalog pages)
+* [x] Dynamic routes for product details (/product/[id])
+* [ ] Shopping cart state management
+* [ ] User authentication (Auth.js / NextAuth)
+* [ ] Production deployment on Vercel
 
 ## Author
 
