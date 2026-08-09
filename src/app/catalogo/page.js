@@ -1,11 +1,5 @@
 import ProductCard from '../../components/ProductCard';
-
-const mockProducts = [
-    { id: 1, title: 'Laptop Pro 16', price: 1200, category: 'Tecnología' },
-    { id: 2, title: 'Auriculares Noise Cancelling', price: 250, category: 'Audio' },
-    { id: 3, title: 'Teclado Mecánico RGB', price: 110, category: 'Accesorios' },
-    { id: 4, title: 'Monitor 4K 27"', price: 450, category: 'Tecnología' },
-];
+import { mockProducts } from '@/lib/products';
 
 export default function CatalogoPage() {
     return (
