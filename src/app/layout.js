@@ -1,4 +1,5 @@
 import  Navbar from "../components/Navbar";
+import Footer from "@/components/Footer";
 import "./globals.css";
 
 export default function RootLayout({ children }) {
@@ -6,7 +7,10 @@ export default function RootLayout({ children }) {
     <html lang="es">
       <body className="bg-slate-900">
         <Navbar/>
-        {children}
+        <div className="flex-grow">
+          {children}
+        </div>
+        <Footer/>
       </body>
     </html>
   );
