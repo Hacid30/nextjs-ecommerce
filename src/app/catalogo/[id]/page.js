@@ -23,7 +23,8 @@ export default async function ProductDetailPage({ params }) {
     }
 
     return (
-        <main className="max-w-4xl mx-auto px-6 py-12">
+        <main className="bg-slate-800">
+            <div className="max-w-4xl mx-auto px-6 py-12">
             <Link href="/catalogo" className="text-sky-400 hover:underline text-sm mb-6 inline-block" >
                 ← Volver al catálogo
             </Link>
@@ -47,6 +48,7 @@ export default async function ProductDetailPage({ params }) {
                     </button>
                 </div>
                 </div>
+            </div>
             </div>
         </main>
     )
