@@ -2,17 +2,19 @@
 
 import Link from "next/link";
 import { useCartStore } from "@/app/store/useCartStore";
+import { useSession, signIn, signOut } from 'next-auth/react';
 
 export default function Navbar() {
     const cart = useCartStore((state) => state.cart);
-
     const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-    
+    const { data: session, status } = useSession();
+
     return (
         <nav className="sticky top-0 z-50 bg-slate-800 border-b border-slate-700 px-6 py-4 flex justify-between items-center text-white">
-            <Link href="/" className="text-xl font-bold text-sky-400">
-                NextShop
+            <Link href="/catalogo" className="text-xl font-bold text-sky-400">
+                MiTienda
             </Link>
+
             <div className="flex gap-6 text-sm font-medium">
                 <Link href="/" className="hover:text-sky-400  transition" > Inicio </Link>
                 <Link href="/catalogo" className="hover:text-sky-400  transition" > Catalogo </Link>
@@ -25,6 +27,33 @@ export default function Navbar() {
                 )}
                 </Link>
             </div>
+
+            {status === 'loading' ? (
+                <span className="text-xs text-slate-500">Cargando...</span>
+            ) : session ? (
+                <div>
+                    {session.user.image && (
+                        <img 
+                            src={session.user.image}
+                            alt={session.user.name || 'Usuario'}
+                            className="w-8 h-8 rounded-full border border-sky-400"
+                        />
+                    )}
+                    <button
+                        onClick={() => signOut()}
+                        className="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-2 rounded-lg boder border-slate-700 transition"
+                    >
+                        Salir
+                    </button>
+                </div>
+            ) : (
+                <butto
+                    onClick={() => signIn('github')}
+                    className='text-sm bg-slate-800 hover:bg-slate-700 text-white font-semibold px-4 py-2 rounded-lg border border-slate-700 flex items-center gap-2 transition'
+                >
+                    Iniciar Sesion
+                </butto>
+            )}
         </nav>
     );
 }

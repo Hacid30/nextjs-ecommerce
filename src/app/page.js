@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-slate-900 text-white flex flex-col items-center justify-center p-8">
       <h1 className="text-5xl font-extrabold text-white mb-4">
-        Bienvenido a <span className="text-sky-400">NextShop</span>
+        Bienvenido a <span className="text-sky-400">Mi Tienda</span>
       </h1>
       <p className="text-slate-300 text-lg max-w-xl mb-8">
         Encuentra la mejor tecnología y accesorios con entregas rápidas y pagos seguros.
