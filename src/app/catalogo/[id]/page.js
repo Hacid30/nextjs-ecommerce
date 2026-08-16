@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 async function getProduct(id) {
     const res = await fetch(`https://fakestoreapi.com/products/${id}`);
@@ -31,7 +32,12 @@ export default async function ProductDetailPage({ params }) {
 
             <div className="bg-slate-800 border border-slate-700 rounded-2xl p-8">
                 <div className="bg-white p-6 rounded-xl mb-4 flex items-center justify-center h-72">
-                    <img src={product.image} alt={product.title} className="max-h-full object-contain"/>
+                    <Image 
+                        src={product.image} 
+                        alt={product.title} 
+                        width={400}
+                        height={400}
+                        className="max-h-full object-contain"/>
                 </div>
                 
                 <div>

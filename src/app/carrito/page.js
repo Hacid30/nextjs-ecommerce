@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useCartStore } from "../store/useCartStore";
+import Image from "next/image";
 
 export default function CarritoPage() {
     const { cart, addToCart, decreaseQuantity, removeFromCart, clearCart } = useCartStore();
@@ -38,7 +39,13 @@ export default function CarritoPage() {
                         >
                             {item.image && (
                                 <di className="bg-white p-2 rounded-lg w-16 h-16 shrink-0 flex items-center justify-center">
-                                    <img src={item.image} alt={item.title} className="max-h-full object-contain" />
+                                    <Image 
+                                        src={item.image} 
+                                        alt={item.title} 
+                                        className="max-h-full object-contain" 
+                                        width={40}
+                                        height={40}
+                                        />
                                 </di>
                             )}
 
@@ -100,11 +107,12 @@ export default function CarritoPage() {
                         <span>Total</span>
                         <span className="text-sky-400">${total.toFixed(2)}</span>
                     </div>
-                    <button
-                        className="w-full bg-sky-500 hover:bg-sky-400 text-slate-900 font-bold py-3 rounded-xl transition"
+                    <Link
+                    href={'/checkout'}
+                        className="block text-center w-full bg-sky-500 hover:bg-sky-400 text-slate-900 font-bold py-3 rounded-xl transition"
                     >
                         Proceder al Pago
-                    </button>
+                    </Link>
                 </div>
             </div>
         </main>

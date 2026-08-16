@@ -1,6 +1,7 @@
 'use client'
 
 import Link from "next/link";
+import Image from "next/image";
 import { useCartStore } from "@/app/store/useCartStore";
 import { useSession, signIn, signOut } from 'next-auth/react';
 
@@ -10,7 +11,7 @@ export default function Navbar() {
     const { data: session, status } = useSession();
 
     return (
-        <nav className="sticky top-0 z-50 bg-slate-800 border-b border-slate-700 px-6 py-4 flex justify-between items-center text-white">
+        <nav className="sticky top-0 z-50 bg-slate-800 border-b border-slate-700 flex flex-col sm:flex-row justify-between items-center p-4 text-white">
             <Link href="/catalogo" className="text-xl font-bold text-sky-400">
                 MiTienda
             </Link>
@@ -33,9 +34,11 @@ export default function Navbar() {
             ) : session ? (
                 <div>
                     {session.user.image && (
-                        <img 
+                        <Image
                             src={session.user.image}
                             alt={session.user.name || 'Usuario'}
+                            width={40}
+                            height={40}
                             className="w-8 h-8 rounded-full border border-sky-400"
                         />
                     )}

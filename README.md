@@ -41,12 +41,12 @@ git clone https://github.com/Hacid30/nextjs-ecommerce.git
 cd nextjs-ecommerce
 ```
 
-#### Install dependencies
+### 2. Install dependencies
 ```
 npm install
 ```
 
-#### Environment Variables
+### 3. Environment Variables
 Create a .env.local file in the root directory:
 ```bash
 AUTH_SECRET="your_secret_encryption_key"
@@ -54,7 +54,7 @@ AUTH_GITHUB_ID="your_github_client_id"
 AUTH_GITHUB_SECRET="your_github_client_secret"
 ```
 
-#### Run the development server
+### 4. Run the development server
 ```bash
 npm run dev
 ```
