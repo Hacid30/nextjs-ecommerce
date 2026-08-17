@@ -1,10 +1,22 @@
 import Link from "next/link";
 import Image from "next/image";
+import { mockProducts } from "@/lib/products";
 
 async function getProduct(id) {
-    const res = await fetch(`https://fakestoreapi.com/products/${id}`);
-    if(!res.ok) return null;
-    return res.json();
+    try {
+        const res = await fetch(`https://fakestoreapi.com/products/${id}`, { cache: 'no-store' });
+
+        if(!res.ok) {
+            console.warn('Error de respuesta API, buscando en mockProducts');
+            return mockProducts.find((p) => p.id === Number(id)) || null;
+        };
+
+        return await res.json();
+
+    } catch (error) {
+        console.error("Error de conexión con la API, buscando en mockProducts:", error);
+        return mockProducts.find((p) => p.id === Number(id)) || null;
+    }
 }
 
 export default async function ProductDetailPage({ params }) {
@@ -13,7 +25,7 @@ export default async function ProductDetailPage({ params }) {
 
     if(!product){
         return (
-            <main className="max-w-4xl max-auto px-6 py-20 text-center">
+            <main className="max-w-4xl mx-auto px-6 py-20 text-center">
                 <h1 className="text-3xl font-bold text-red-400 mb-4" >Producto no encontrado</h1>
                 <p className="text-slate-400 mb-6" >El producto que buscas no existe o fue removido.</p>
                 <Link href='/catalogo' className="text-sky-400 hover:underline">
@@ -24,14 +36,14 @@ export default async function ProductDetailPage({ params }) {
     }
 
     return (
-        <main className="bg-slate-800">
-            <div className="max-w-4xl mx-auto px-6 py-12">
+        <main className="bg-slate-900 min-h-screen py-12">
+            <div className="max-w-4xl mx-auto px-6">
             <Link href="/catalogo" className="text-sky-400 hover:underline text-sm mb-6 inline-block" >
                 ← Volver al catálogo
             </Link>
 
             <div className="bg-slate-800 border border-slate-700 rounded-2xl p-8">
-                <div className="bg-white p-6 rounded-xl mb-4 flex items-center justify-center h-72">
+                <div className="bg-white p-6 rounded-xl mb-6 flex items-center justify-center h-72">
                     <Image 
                         src={product.image} 
                         alt={product.title} 
