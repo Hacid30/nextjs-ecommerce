@@ -2,7 +2,8 @@ import ProductCard from '../../components/ProductCard';
 
 async function getProducts() {
     
-    const res = await fetch('https://fakestoreapi.com/products');
+    const res = await fetch('https://fakestoreapi.com/products', 
+        { cache: 'no-store'});
     
     if (!res.ok) {
         throw new Error('Error al obtener los productos');
