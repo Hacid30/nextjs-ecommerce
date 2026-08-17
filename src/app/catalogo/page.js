@@ -3,7 +3,8 @@ import { mockProducts } from '@/lib/products';
 
 async function getProducts() {
     try {
-        const res = await fetch('https://fakestoreapi.com/products', { cache: 'no-store' });
+        const res = await fetch('https://fakestoreapi.com/products', 
+            { next:{ revalidate: 60} });
         
         if (!res.ok) {
         console.warn('Error al obtener los productos');
