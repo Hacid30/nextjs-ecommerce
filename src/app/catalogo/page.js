@@ -1,13 +1,20 @@
 import ProductCard from '../../components/ProductCard';
+import { mockProducts } from '@/lib/products';
 
 async function getProducts() {
-    const res = await fetch('https://fakestoreapi.com/products', { cache: 'no-store' });
-    
-    if (!res.ok) {
-        throw new Error('Error al obtener los productos');
-    }
+    try {
+        const res = await fetch('https://fakestoreapi.com/products', { cache: 'no-store' });
+        
+        if (!res.ok) {
+        console.warn('Error al obtener los productos');
+        return mockProducts;
+        }
 
-    return res.json();
+        return await res.json();
+    } catch (error) {
+        console.error("Error de conexión, usando productos de respaldo:", error);
+        return mockProducts;
+    }
 }
 
 export default async function CatalogoPage() {
