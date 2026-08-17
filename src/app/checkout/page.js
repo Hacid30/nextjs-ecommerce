@@ -1,9 +1,29 @@
-import { auth } from "@/auth";
+'use client';
+
 import Link from "next/link";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
+import { useCartStore } from "../store/useCartStore";
 
-export default async function CheckoutPage() {
-    const session = await auth();
+export default function CheckoutPage() {
+    const { data: session, status } = useSession();
+    const clearCart = useCartStore((state) => state.clearCart);
+    
+    const handleBuy = (e) => {
+        e.preventDefault();
+        alert('🎉 ¡Felicidades por tu compra! Tu pedido está siendo procesado.');
+
+        clearCart();
+        window.location.href = '/';
+    };
+
+    if (status === 'loading') {
+        return (
+            <main className="bg-slate-800 min-h-screen flex items-center justify-center text-white">
+                <p> Cargando sesión... </p>
+            </main>
+        )
+    }
 
     if (!session) {
         return (<main className="bg-slate-800 min-h-screen flex flex-col items-center justify-center p-6 text-center text-white">
@@ -27,7 +47,7 @@ export default async function CheckoutPage() {
         <main className='bg-slate-800 min-h-screen px-6 py-12 text-white text-center'>
             <h1 className="text-3xl font-extrabold mb-2">Simulador de Pago 💳</h1>
             <p className="text-slate-400 mb-8">
-                Bienvenido, <span className="text-sky-400 font-semibold"> {session.user?.name}</span>. Confrima los detalle de tu orden. 
+                Bienvenido, <span className="text-sky-400 font-semibold"> {session.user?.name}</span>. Confrima los detalles de tu orden. 
             </p>
 
             <div className="max-w-3xl mx-auto border border-slate-700 rounded-2xl p-6 space-y-4">
@@ -52,9 +72,12 @@ export default async function CheckoutPage() {
                     <p className="text-sm text-slate-400 mb-4">
                         Este es un entorno de pruebas. Al hacer clic en el botón, simularás una transacción exitosa.
                     </p>
-                    <butto className='w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-3 py-3 rounded-xl transition'>
+                    <button
+                        onClick={handleBuy}
+                        className='w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold px-3 py-3 rounded-xl transition'
+                    >
                         Pagar Ahora (simulación)
-                    </butto>
+                    </button>
                 </div>
             </div>
         </main>

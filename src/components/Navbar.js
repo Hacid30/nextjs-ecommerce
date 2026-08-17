@@ -50,12 +50,12 @@ export default function Navbar() {
                     </button>
                 </div>
             ) : (
-                <butto
+                <button
                     onClick={() => signIn('github')}
                     className='text-sm bg-slate-800 hover:bg-slate-700 text-white font-semibold px-4 py-2 rounded-lg border border-slate-700 flex items-center gap-2 transition'
                 >
                     Iniciar Sesion
-                </butto>
+                </button>
             )}
         </nav>
     );
