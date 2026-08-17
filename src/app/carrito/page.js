@@ -38,15 +38,15 @@ export default function CarritoPage() {
                             className="bg-slate-800 border border-slate-700 rounded-xl p-4 flex items-center justify-between gap-4"
                         >
                             {item.image && (
-                                <di className="bg-white p-2 rounded-lg w-16 h-16 shrink-0 flex items-center justify-center">
+                                <div className="bg-white p-2 rounded-lg w-16 h-16 shrink-0 flex items-center justify-center">
                                     <Image 
-                                        src={item.image} 
+                                        src={item.image || '/images/s-l500.jpg'} 
                                         alt={item.title} 
                                         className="max-h-full object-contain" 
                                         width={40}
                                         height={40}
                                         />
-                                </di>
+                                </div>
                             )}
 
                             <div className="grow">
@@ -56,12 +56,12 @@ export default function CarritoPage() {
 
                             {/* Controles de Cantidad */}
                             <div className="flex items-center gap-2 bg-slate-900 rounded-lg px-2 py-1 border border-slate-700">
-                                <butto 
+                                <button 
                                     onClick={ () =>  decreaseQuantity(item.id)}
                                     className="px-2 py-1 text-slate-400 hover:text-white font-bold"
                                 >
                                     -
-                                </butto>
+                                </button>
                                 <span className="text-sm font-bold w-4 text-center">{item.quantity}</span>
                                 <button 
                                     onClick={ () => addToCart(item)}

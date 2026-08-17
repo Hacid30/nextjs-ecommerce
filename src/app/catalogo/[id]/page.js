@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import AddToCartButton from "@/components/AddToCartButton";
 import { mockProducts } from "@/lib/products";
 
 async function getProduct(id) {
@@ -61,9 +62,7 @@ export default async function ProductDetailPage({ params }) {
 
                 <div className="flex items-center justify-between pt-6 border-t border-slate-700">
                     <p className="text-3xl front-bold text-white">${product.price}</p>
-                    <button className="bg-sky-500 hover:bg-sky-400 text-slate-900 font-bold px-6 py-3 rounded-xl transition">
-                    Añadir al Carrito
-                    </button>
+                    <AddToCartButton product={product}/>
                 </div>
                 </div>
             </div>
